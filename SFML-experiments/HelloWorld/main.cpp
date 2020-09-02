@@ -1,6 +1,10 @@
 /**
- * Compile with
- *   g++ main.cpp -o hello_world -lsfml-graphics -lsfml-window -lsfml-system
+ * Compiling instructions
+ *  - Create any directory, say "build" and cd into it.
+ *  - run "cmake .."
+ *  - run "make"
+ *  - run "cd .."
+ *  - run "build/hello_world"
  */
 
 
