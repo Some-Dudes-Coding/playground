@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "9p2cgYBOW1sXlBdMsPdnfdNWRT2BPs0Ih8RMJoYdggrOGPnwDmv3hE/s+8UtsKPJyguQbFAT8D0tdUENLGzZYg==",
+  "success": true,
+  "projectFilePath": "D:\\StradivariK\\Documents\\Projects\\Pong\\Pong\\Pong.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\StradivariK\\.nuget\\packages\\monogame.content.builder.task\\3.8.0.1641\\monogame.content.builder.task.3.8.0.1641.nupkg.sha512",
+    "C:\\Users\\StradivariK\\.nuget\\packages\\monogame.framework.desktopgl\\3.8.0.1641\\monogame.framework.desktopgl.3.8.0.1641.nupkg.sha512"
+  ],
+  "logs": []
+}

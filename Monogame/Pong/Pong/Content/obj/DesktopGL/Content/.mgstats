@@ -1,0 +1,4 @@
+Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"D:/StradivariK/Documents/Projects/Pong/Pong/Content/Ball/Ball.png","D:/StradivariK/Documents/Projects/Pong/Pong/Content/bin/DesktopGL/Content/Ball/Ball.xnb","TextureProcessor","Texture2DContent",94,485,0.2206802
+"D:/StradivariK/Documents/Projects/Pong/Pong/Content/Font/Bit5x3.spritefont","D:/StradivariK/Documents/Projects/Pong/Pong/Content/bin/DesktopGL/Content/Font/Bit5x3.xnb","FontDescriptionProcessor","SpriteFontContent",2017,37922,0.3782274
+"D:/StradivariK/Documents/Projects/Pong/Pong/Content/Paddle/Paddle.png","D:/StradivariK/Documents/Projects/Pong/Pong/Content/bin/DesktopGL/Content/Paddle/Paddle.xnb","TextureProcessor","Texture2DContent",104,1685,0.0058944
