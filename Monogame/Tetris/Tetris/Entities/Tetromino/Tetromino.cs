@@ -1,6 +1,4 @@
-﻿using System;
-
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -19,7 +17,6 @@ namespace Tetris {
         private Type type;
         private int[,] layout;
 
-        private static Random random = new Random();
         private Color tint;
 
         public Tetromino(Type type, Vector2 position) {
@@ -28,13 +25,13 @@ namespace Tetris {
         }
 
         public override void Initialize() {
-            this.tint = new Color((byte)random.Next(0, 255), (byte)random.Next(0, 255), (byte)random.Next(0, 255));
+            this.tint = Utils.getHighSaturatedRandomColor();
 
             DetermineLayout();
         }
 
         public override void LoadContent(ContentManager contentManager) {
-            this.texture = contentManager.Load<Texture2D>("Tetromino Piece/Tetromino Piece");
+            this.texture = contentManager.Load<Texture2D>("Block/Block");
         }
 
         public override void Update(float deltaTime) {

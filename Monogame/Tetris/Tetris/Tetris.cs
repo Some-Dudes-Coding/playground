@@ -26,13 +26,8 @@ namespace Tetris {
             this.graphics.PreferredBackBufferHeight = (int)this.screenSize.Y;
 
             this.gameObjects = new List<GameObject>() {
-                new Tetromino(Tetromino.Type.I, new Vector2(20, 20)),
-                new Tetromino(Tetromino.Type.J, new Vector2(120, 20)),
-                new Tetromino(Tetromino.Type.L, new Vector2(220, 20)),
-                new Tetromino(Tetromino.Type.O, new Vector2(320, 20)),
-                new Tetromino(Tetromino.Type.S, new Vector2(20, 120)),
-                new Tetromino(Tetromino.Type.Z, new Vector2(120, 120)),
-                new Tetromino(Tetromino.Type.T, new Vector2(220, 120))
+                new Field(),
+                new Tetromino(Tetromino.Type.Z, new Vector2(20, 20))
             };
 
             this.gameObjects.ForEach(delegate (GameObject gameObject) { gameObject.Initialize(); });

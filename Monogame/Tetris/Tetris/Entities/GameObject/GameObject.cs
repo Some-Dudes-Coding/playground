@@ -6,7 +6,7 @@ namespace Tetris {
     abstract class GameObject {
         protected Vector2 position;
 
-        protected Texture2D texture;
+        public Texture2D texture;
 
         public abstract void Initialize();
         public abstract void LoadContent(ContentManager contentManager);
