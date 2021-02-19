@@ -12,6 +12,12 @@ namespace Tetris {
         private Vector2 screenSize;
 
         private List<GameObject> gameObjects;
+        private Field field;
+        private Tetromino tetromino;
+
+        private int inputDelay;
+        private float inputTick;
+        private float timeSinceLastInputTick;
 
         public Tetris() {
             this.graphics = new GraphicsDeviceManager(this);
@@ -25,9 +31,16 @@ namespace Tetris {
             this.graphics.PreferredBackBufferWidth = (int)this.screenSize.X;
             this.graphics.PreferredBackBufferHeight = (int)this.screenSize.Y;
 
+            this.inputDelay = 50;
+            this.inputTick = (float)this.inputDelay / 1000;
+            this.timeSinceLastInputTick = 0;
+
+            this.field = new Field(new Vector2(10, 10), new Vector2(14, 26));
+            this.tetromino = new Tetromino(Tetromino.Type.T, new Vector2(70, 10));
+
             this.gameObjects = new List<GameObject>() {
-                new Field(),
-                new Tetromino(Tetromino.Type.Z, new Vector2(20, 20))
+                this.field,
+                this.tetromino
             };
 
             this.gameObjects.ForEach(delegate (GameObject gameObject) { gameObject.Initialize(); });
@@ -42,8 +55,24 @@ namespace Tetris {
         }
 
         protected override void Update(GameTime gameTime) {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+
+            this.timeSinceLastInputTick += (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            if (this.timeSinceLastInputTick >= this.inputTick) {
+                this.timeSinceLastInputTick = 0;
+
+                KeyboardState state = Keyboard.GetState();
+                if (state.IsKeyDown(Keys.Left) && this.field.DoesTetrominoFit(this.tetromino.layout, this.tetromino.position + new Vector2(-this.tetromino.texture.Width, 0)))
+                    this.tetromino.MoveLeft();
+
+                if (state.IsKeyDown(Keys.Right) && this.field.DoesTetrominoFit(this.tetromino.layout, this.tetromino.position + new Vector2(this.tetromino.texture.Width, 0)))
+                    this.tetromino.MoveRight();
+
+                if (state.IsKeyDown(Keys.Down) && this.field.DoesTetrominoFit(this.tetromino.layout, this.tetromino.position + new Vector2(0, this.tetromino.texture.Height)))
+                    this.tetromino.MoveDown();
+            }
 
             this.gameObjects.ForEach(delegate (GameObject gameObject) { gameObject.Update((float)gameTime.ElapsedGameTime.TotalSeconds); });
 

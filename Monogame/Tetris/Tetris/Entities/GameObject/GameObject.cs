@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Tetris {
     abstract class GameObject {
-        protected Vector2 position;
+        public Vector2 position;
 
         public Texture2D texture;
 

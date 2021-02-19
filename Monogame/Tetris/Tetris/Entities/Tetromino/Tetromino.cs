@@ -14,8 +14,9 @@ namespace Tetris {
             T
         }
 
+        public int[,] layout;
+
         private Type type;
-        private int[,] layout;
 
         private Color tint;
 
@@ -34,9 +35,7 @@ namespace Tetris {
             this.texture = contentManager.Load<Texture2D>("Block/Block");
         }
 
-        public override void Update(float deltaTime) {
-        
-        }
+        public override void Update(float deltaTime) {}
 
         public override void Draw(SpriteBatch spriteBatch) {
             for (int i = 0; i < this.layout.GetLength(0); i++) {
@@ -47,6 +46,18 @@ namespace Tetris {
                     spriteBatch.Draw(this.texture, this.position + new Vector2(j * this.texture.Width, i * this.texture.Height), this.tint);
                 }
             }
+        }
+
+        public void MoveRight() {
+            this.position = new Vector2(this.position.X + this.texture.Width, this.position.Y);
+        }
+
+        public void MoveLeft() {
+            this.position = new Vector2(this.position.X - this.texture.Width, this.position.Y);
+        }
+
+        public void MoveDown() {
+            this.position = new Vector2(this.position.X, this.position.Y + this.texture.Height);
         }
 
         private void DetermineLayout() {
