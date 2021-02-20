@@ -28,5 +28,29 @@ namespace Tetris {
 
             return new Color(rgb[0], rgb[1], rgb[2]);
         }
+
+        public static int GetRotatedIndex(int rotation, int sizeX, int x, int y) {
+            int rotatedIndex = 0;
+
+            switch (rotation % 360) {
+                case 0:
+                    rotatedIndex = y * sizeX + x;
+                    break;
+
+                case 90:
+                    rotatedIndex = (sizeX * 3) + y - (x * sizeX);
+                    break;
+
+                case 180:
+                    rotatedIndex = (sizeX * 4 - 1) - (sizeX * y) - x;
+                    break;
+
+                case 270:
+                    rotatedIndex = (sizeX - 1) - y + (sizeX * x);
+                    break;
+            }
+
+            return rotatedIndex;
+        }
     }
 }

@@ -19,6 +19,9 @@ namespace Tetris {
         private float inputTick;
         private float timeSinceLastInputTick;
 
+        private float forceDownTick;
+        private float timeSinceLastForceDownTick;
+
         public Tetris() {
             this.graphics = new GraphicsDeviceManager(this);
             this.Content.RootDirectory = "Content";
@@ -35,7 +38,10 @@ namespace Tetris {
             this.inputTick = (float)this.inputDelay / 1000;
             this.timeSinceLastInputTick = 0;
 
-            this.field = new Field(new Vector2(10, 10), new Vector2(14, 26));
+            this.forceDownTick = 1;
+            this.timeSinceLastForceDownTick = 0;
+
+            this.field = new Field(new Vector2(10, 10));
             this.tetromino = new Tetromino(Tetromino.Type.T, new Vector2(70, 10));
 
             this.gameObjects = new List<GameObject>() {
@@ -64,13 +70,25 @@ namespace Tetris {
                 this.timeSinceLastInputTick = 0;
 
                 KeyboardState state = Keyboard.GetState();
-                if (state.IsKeyDown(Keys.Left) && this.field.DoesTetrominoFit(this.tetromino.layout, this.tetromino.position + new Vector2(-this.tetromino.texture.Width, 0)))
+                if (state.IsKeyDown(Keys.Down) && this.field.DoesTetrominoFit(this.tetromino.layout, this.tetromino.rotation, this.tetromino.GetDownMovementStep()))
+                    this.tetromino.MoveDown();
+
+                if (state.IsKeyDown(Keys.Left) && this.field.DoesTetrominoFit(this.tetromino.layout, this.tetromino.rotation, this.tetromino.GetLeftMovementStep()))
                     this.tetromino.MoveLeft();
 
-                if (state.IsKeyDown(Keys.Right) && this.field.DoesTetrominoFit(this.tetromino.layout, this.tetromino.position + new Vector2(this.tetromino.texture.Width, 0)))
+                if (state.IsKeyDown(Keys.Right) && this.field.DoesTetrominoFit(this.tetromino.layout, this.tetromino.rotation, this.tetromino.GetRightMovementStep()))
                     this.tetromino.MoveRight();
 
-                if (state.IsKeyDown(Keys.Down) && this.field.DoesTetrominoFit(this.tetromino.layout, this.tetromino.position + new Vector2(0, this.tetromino.texture.Height)))
+                if (state.IsKeyDown(Keys.Z) && this.field.DoesTetrominoFit(this.tetromino.layout, this.tetromino.GetRotatedStep(), this.tetromino.position))
+                    this.tetromino.Rotate();
+            }
+
+            this.timeSinceLastForceDownTick += (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            if (this.timeSinceLastForceDownTick >= this.forceDownTick) {
+                this.timeSinceLastForceDownTick = 0;
+
+                if (this.field.DoesTetrominoFit(this.tetromino.layout, this.tetromino.rotation, this.tetromino.GetDownMovementStep()))
                     this.tetromino.MoveDown();
             }
 
