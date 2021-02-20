@@ -70,8 +70,18 @@ namespace Tetris {
                 this.timeSinceLastInputTick = 0;
 
                 KeyboardState state = Keyboard.GetState();
-                if (state.IsKeyDown(Keys.Down) && this.field.DoesTetrominoFit(this.tetromino.layout, this.tetromino.rotation, this.tetromino.GetDownMovementStep()))
-                    this.tetromino.MoveDown();
+                if (state.IsKeyDown(Keys.Down)) {
+                    if (this.field.DoesTetrominoFit(this.tetromino.layout, this.tetromino.rotation, this.tetromino.GetDownMovementStep()))
+                        this.tetromino.MoveDown();
+                    else {
+                        this.field.LockTetromino(this.tetromino.layout, this.tetromino.rotation, this.tetromino.texture, this.tetromino.position);
+                        this.gameObjects.Remove(this.tetromino);
+                        this.tetromino = new Tetromino(Tetromino.Type.O, new Vector2(70, 10));
+                        this.gameObjects.Add(this.tetromino);
+                        this.tetromino.Initialize();
+                        this.tetromino.LoadContent(this.Content);
+                    }
+                }
 
                 if (state.IsKeyDown(Keys.Left) && this.field.DoesTetrominoFit(this.tetromino.layout, this.tetromino.rotation, this.tetromino.GetLeftMovementStep()))
                     this.tetromino.MoveLeft();
@@ -90,6 +100,14 @@ namespace Tetris {
 
                 if (this.field.DoesTetrominoFit(this.tetromino.layout, this.tetromino.rotation, this.tetromino.GetDownMovementStep()))
                     this.tetromino.MoveDown();
+                else {
+                    this.field.LockTetromino(this.tetromino.layout, this.tetromino.rotation, this.tetromino.texture, this.tetromino.position);
+                    this.gameObjects.Remove(this.tetromino);
+                    this.tetromino = new Tetromino(Tetromino.Type.O, new Vector2(70, 10));
+                    this.gameObjects.Add(this.tetromino);
+                    this.tetromino.Initialize();
+                    this.tetromino.LoadContent(this.Content);
+                }
             }
 
             this.gameObjects.ForEach(delegate (GameObject gameObject) { gameObject.Update((float)gameTime.ElapsedGameTime.TotalSeconds); });
