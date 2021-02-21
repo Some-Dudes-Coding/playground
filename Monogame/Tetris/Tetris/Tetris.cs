@@ -16,8 +16,10 @@ namespace Tetris {
         private Field field;
         private Vector2 fieldPosition;
 
-        private Tetromino tetromino;
         private Vector2 tetrominoPosition;
+        private Tetromino tetromino;
+        private Vector2 nextTetrominoPosition;
+        private Tetromino nextTetromino;
 
         private int inputDelay;
         private float inputTick;
@@ -33,10 +35,11 @@ namespace Tetris {
         }
 
         protected override void Initialize() {
-            this.screenSize = new Vector2(640, 480);
+            this.screenSize = new Vector2(600, 410);
             
             this.graphics.PreferredBackBufferWidth = (int)this.screenSize.X;
             this.graphics.PreferredBackBufferHeight = (int)this.screenSize.Y;
+            this.graphics.ApplyChanges();
 
             this.inputDelay = 50;
             this.inputTick = (float)this.inputDelay / 1000;
@@ -48,12 +51,16 @@ namespace Tetris {
             this.fieldPosition = new Vector2(10, 10);
             this.field = new Field(this.fieldPosition);
 
-            this.tetrominoPosition = new Vector2(70, 10);
+            this.tetrominoPosition = new Vector2(85, 10);
             this.tetromino = new Tetromino(this.tetrominoPosition);
+
+            this.nextTetrominoPosition = new Vector2(260, 40);
+            this.nextTetromino = new Tetromino(this.nextTetrominoPosition);
 
             this.gameObjects = new List<GameObject>() {
                 this.field,
-                this.tetromino
+                this.tetromino,
+                this.nextTetromino
             };
 
             this.gameObjects.ForEach(delegate (GameObject gameObject) { gameObject.Initialize(); });
@@ -127,11 +134,16 @@ namespace Tetris {
             this.field.HandleLineCompletion(this.tetromino.position);
 
             this.gameObjects.Remove(this.tetromino);
-            this.tetromino = new Tetromino(this.tetrominoPosition);
+            this.tetromino = this.nextTetromino;
+            this.tetromino.position = this.tetrominoPosition;
             this.gameObjects.Add(this.tetromino);
 
-            this.tetromino.Initialize();
-            this.tetromino.LoadContent(this.Content);
+            this.gameObjects.Remove(this.nextTetromino);
+            this.nextTetromino = new Tetromino(this.nextTetrominoPosition);
+            this.gameObjects.Add(this.nextTetromino);
+
+            this.nextTetromino.Initialize();
+            this.nextTetromino.LoadContent(this.Content);
         }
     }
 }
