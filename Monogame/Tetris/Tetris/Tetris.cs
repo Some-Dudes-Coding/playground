@@ -12,8 +12,12 @@ namespace Tetris {
         private Vector2 screenSize;
 
         private List<GameObject> gameObjects;
+        
         private Field field;
+        private Vector2 fieldPosition;
+
         private Tetromino tetromino;
+        private Vector2 tetrominoPosition;
 
         private int inputDelay;
         private float inputTick;
@@ -41,8 +45,11 @@ namespace Tetris {
             this.forceDownTick = 1;
             this.timeSinceLastForceDownTick = 0;
 
-            this.field = new Field(new Vector2(10, 10));
-            this.tetromino = new Tetromino(Tetromino.Type.T, new Vector2(70, 10));
+            this.fieldPosition = new Vector2(10, 10);
+            this.field = new Field(this.fieldPosition);
+
+            this.tetrominoPosition = new Vector2(70, 10);
+            this.tetromino = new Tetromino(this.tetrominoPosition);
 
             this.gameObjects = new List<GameObject>() {
                 this.field,
@@ -73,14 +80,8 @@ namespace Tetris {
                 if (state.IsKeyDown(Keys.Down)) {
                     if (this.field.DoesTetrominoFit(this.tetromino.layout, this.tetromino.rotation, this.tetromino.GetDownMovementStep()))
                         this.tetromino.MoveDown();
-                    else {
-                        this.field.LockTetromino(this.tetromino.layout, this.tetromino.rotation, this.tetromino.texture, this.tetromino.position);
-                        this.gameObjects.Remove(this.tetromino);
-                        this.tetromino = new Tetromino(Tetromino.Type.O, new Vector2(70, 10));
-                        this.gameObjects.Add(this.tetromino);
-                        this.tetromino.Initialize();
-                        this.tetromino.LoadContent(this.Content);
-                    }
+                    else
+                        this.LockTetromino();
                 }
 
                 if (state.IsKeyDown(Keys.Left) && this.field.DoesTetrominoFit(this.tetromino.layout, this.tetromino.rotation, this.tetromino.GetLeftMovementStep()))
@@ -100,14 +101,8 @@ namespace Tetris {
 
                 if (this.field.DoesTetrominoFit(this.tetromino.layout, this.tetromino.rotation, this.tetromino.GetDownMovementStep()))
                     this.tetromino.MoveDown();
-                else {
-                    this.field.LockTetromino(this.tetromino.layout, this.tetromino.rotation, this.tetromino.texture, this.tetromino.position);
-                    this.gameObjects.Remove(this.tetromino);
-                    this.tetromino = new Tetromino(Tetromino.Type.O, new Vector2(70, 10));
-                    this.gameObjects.Add(this.tetromino);
-                    this.tetromino.Initialize();
-                    this.tetromino.LoadContent(this.Content);
-                }
+                else
+                    this.LockTetromino();
             }
 
             this.gameObjects.ForEach(delegate (GameObject gameObject) { gameObject.Update((float)gameTime.ElapsedGameTime.TotalSeconds); });
@@ -125,6 +120,18 @@ namespace Tetris {
             this.spriteBatch.End();
 
             base.Draw(gameTime);
+        }
+
+        private void LockTetromino() {
+            this.field.LockTetromino(this.tetromino);
+            this.field.HandleLineCompletion(this.tetromino.position);
+
+            this.gameObjects.Remove(this.tetromino);
+            this.tetromino = new Tetromino(this.tetrominoPosition);
+            this.gameObjects.Add(this.tetromino);
+
+            this.tetromino.Initialize();
+            this.tetromino.LoadContent(this.Content);
         }
     }
 }

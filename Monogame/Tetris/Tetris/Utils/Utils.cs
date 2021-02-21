@@ -4,9 +4,9 @@ using Microsoft.Xna.Framework;
 
 namespace Tetris {
     class Utils {
-        private static Random random = new Random();
+        public static Random random = new Random();
 
-        public static Color getHighSaturatedRandomColor() {
+        public static Color GetHighSaturatedRandomColor() {
             int[] rgb = new int[3];
             rgb[0] = random.Next(256);  // red
             rgb[1] = random.Next(256);  // green

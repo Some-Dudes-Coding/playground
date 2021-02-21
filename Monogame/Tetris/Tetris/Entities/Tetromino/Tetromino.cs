@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -17,16 +18,14 @@ namespace Tetris {
         }
 
         public List<int> layout;
-
-        private int sideSize;
+        public Color tint;
         public int rotation;
-        private int rotationStep;
 
         private Type type;
-        private Color tint;
+        private int sideSize;
+        private int rotationStep;
 
-        public Tetromino(Type type, Vector2 position) {
-            this.type = type;
+        public Tetromino(Vector2 position) {
             this.position = position;
         }
 
@@ -36,7 +35,8 @@ namespace Tetris {
             this.rotation = 0;
             this.rotationStep = 90;
 
-            this.tint = Utils.getHighSaturatedRandomColor();
+            this.tint = Utils.GetHighSaturatedRandomColor();
+            this.type = this.GetRandomType();
 
             DetermineLayout();
         }
@@ -56,6 +56,11 @@ namespace Tetris {
                     spriteBatch.Draw(this.texture, this.position + new Vector2(j * this.texture.Width, i * this.texture.Height), this.tint);
                 }
             }
+        }
+
+        private Type GetRandomType() {
+            Array values = Enum.GetValues(typeof(Type));
+            return (Type)values.GetValue(Utils.random.Next(values.Length));
         }
 
         public Vector2 GetRightMovementStep() {
