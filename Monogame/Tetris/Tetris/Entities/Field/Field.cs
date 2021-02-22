@@ -17,6 +17,8 @@ namespace Tetris {
 
         private int lineBlockAnimationDelay;
 
+        public static event Action<int> OnLinesCompleted;
+
         public Field(Vector2 position) {
             this.position = position;
         }
@@ -25,7 +27,7 @@ namespace Tetris {
             this.sizeX = 14;
             this.sizeY = 26;
 
-            this.emptyColor = new Color(0, 0, 40);
+            this.emptyColor = new Color(0, 0, 60);
             this.completeColor = Color.White;
 
             this.lineBlockAnimationDelay = 30;
@@ -111,6 +113,8 @@ namespace Tetris {
                     for (int j = line; j > 0; j--)
                         this.layout[Utils.GetRotatedIndex(0, this.sizeX, i, j)] = this.layout[Utils.GetRotatedIndex(0, this.sizeX, i, j - 1)];
             });
+
+            OnLinesCompleted?.Invoke(lines.Count);
         }
     }
 }

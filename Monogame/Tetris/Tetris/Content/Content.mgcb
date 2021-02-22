@@ -25,3 +25,10 @@
 /processorParam:TextureFormat=Color
 /build:Block/Block.png
 
+#begin Font/Manaspace Regular.spritefont
+/importer:FontDescriptionImporter
+/processor:LocalizedFontProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Font/Manaspace Regular.spritefont
+

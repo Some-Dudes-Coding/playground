@@ -12,7 +12,7 @@ namespace Tetris {
         private Vector2 screenSize;
 
         private List<GameObject> gameObjects;
-        
+
         private Field field;
         private Vector2 fieldPosition;
 
@@ -20,6 +20,7 @@ namespace Tetris {
         private Tetromino tetromino;
         private Vector2 nextTetrominoPosition;
         private Tetromino nextTetromino;
+        private Vector2 nextFontPosition;
 
         private int inputDelay;
         private float inputTick;
@@ -28,14 +29,27 @@ namespace Tetris {
         private float forceDownTick;
         private float timeSinceLastForceDownTick;
 
+        private SpriteFont font;
+
+        private int score;
+        private int lockScore;
+        private int lineScore;
+        private Vector2 scorePosition;
+
         public Tetris() {
             this.graphics = new GraphicsDeviceManager(this);
             this.Content.RootDirectory = "Content";
             this.IsMouseVisible = true;
+
+            Field.OnLinesCompleted += this.Field_AddLinesCompletedScore;
+        }
+
+        ~Tetris() {
+            Field.OnLinesCompleted -= this.Field_AddLinesCompletedScore;
         }
 
         protected override void Initialize() {
-            this.screenSize = new Vector2(600, 410);
+            this.screenSize = new Vector2(480, 410);
             
             this.graphics.PreferredBackBufferWidth = (int)this.screenSize.X;
             this.graphics.PreferredBackBufferHeight = (int)this.screenSize.Y;
@@ -54,8 +68,15 @@ namespace Tetris {
             this.tetrominoPosition = new Vector2(85, 10);
             this.tetromino = new Tetromino(this.tetrominoPosition);
 
-            this.nextTetrominoPosition = new Vector2(260, 40);
+            this.nextTetrominoPosition = new Vector2(260, 165);
             this.nextTetromino = new Tetromino(this.nextTetrominoPosition);
+            this.nextFontPosition= new Vector2(240, 130);
+
+            this.score = 0;
+            this.scorePosition = new Vector2(240, 40);
+
+            this.lockScore = 50;
+            this.lineScore = 100;
 
             this.gameObjects = new List<GameObject>() {
                 this.field,
@@ -70,6 +91,8 @@ namespace Tetris {
 
         protected override void LoadContent() {
             this.spriteBatch = new SpriteBatch(this.GraphicsDevice);
+
+            this.font = this.Content.Load<SpriteFont>("Font/Manaspace Regular");
 
             this.gameObjects.ForEach(delegate (GameObject gameObject) { gameObject.LoadContent(this.Content); });
         }
@@ -122,6 +145,9 @@ namespace Tetris {
 
             this.spriteBatch.Begin();
 
+            this.spriteBatch.DrawString(this.font, "Next: ", this.nextFontPosition, Color.White);
+            this.spriteBatch.DrawString(this.font, "Score: " + this.score.ToString(), this.scorePosition, Color.White);
+
             this.gameObjects.ForEach(delegate (GameObject gameObject) { gameObject.Draw(this.spriteBatch); });
 
             this.spriteBatch.End();
@@ -130,6 +156,8 @@ namespace Tetris {
         }
 
         private void LockTetromino() {
+            this.score += this.lockScore;
+            
             this.field.LockTetromino(this.tetromino);
             this.field.HandleLineCompletion(this.tetromino.position);
 
@@ -144,6 +172,10 @@ namespace Tetris {
 
             this.nextTetromino.Initialize();
             this.nextTetromino.LoadContent(this.Content);
+        }
+
+        private void Field_AddLinesCompletedScore(int lines) {
+            this.score += (1 << lines) * this.lineScore;
         }
     }
 }
