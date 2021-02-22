@@ -28,6 +28,7 @@ namespace Tetris {
 
         private float forceDownTick;
         private float timeSinceLastForceDownTick;
+        private float maxForceDownSpeed;
 
         private SpriteFont font;
 
@@ -35,6 +36,13 @@ namespace Tetris {
         private int lockScore;
         private int lineScore;
         private Vector2 scorePosition;
+
+        private float difficultyIncreaseStep;
+        private float lockedPiecesToIncreaseDifficulty;
+        private int lockedPieces;
+
+        private bool gameOver;
+        private Texture2D gameOverScreen;
 
         public Tetris() {
             this.graphics = new GraphicsDeviceManager(this);
@@ -61,6 +69,7 @@ namespace Tetris {
 
             this.forceDownTick = 1;
             this.timeSinceLastForceDownTick = 0;
+            this.maxForceDownSpeed = 0.05f;
 
             this.fieldPosition = new Vector2(10, 10);
             this.field = new Field(this.fieldPosition);
@@ -77,6 +86,14 @@ namespace Tetris {
 
             this.lockScore = 50;
             this.lineScore = 100;
+
+            this.difficultyIncreaseStep = 0.05f;
+            this.lockedPieces = 0;
+            this.lockedPiecesToIncreaseDifficulty = 30;
+
+            this.gameOver = false;
+            this.gameOverScreen = new Texture2D(this.graphics.GraphicsDevice, 1, 1);
+            this.gameOverScreen.SetData(new[] { new Color(0, 0, 0, 200) });
 
             this.gameObjects = new List<GameObject>() {
                 this.field,
@@ -98,15 +115,23 @@ namespace Tetris {
         }
 
         protected override void Update(GameTime gameTime) {
-            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
+            KeyboardState state = Keyboard.GetState();
+
+            if (state.IsKeyDown(Keys.Escape))
                 Exit();
+
+            if (this.gameOver) {
+                if (state.IsKeyDown(Keys.Space))
+                    this.ResetGame();
+
+                return;
+            }
 
             this.timeSinceLastInputTick += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             if (this.timeSinceLastInputTick >= this.inputTick) {
                 this.timeSinceLastInputTick = 0;
 
-                KeyboardState state = Keyboard.GetState();
                 if (state.IsKeyDown(Keys.Down)) {
                     if (this.field.DoesTetrominoFit(this.tetromino.layout, this.tetromino.rotation, this.tetromino.GetDownMovementStep()))
                         this.tetromino.MoveDown();
@@ -150,6 +175,11 @@ namespace Tetris {
 
             this.gameObjects.ForEach(delegate (GameObject gameObject) { gameObject.Draw(this.spriteBatch); });
 
+            if (this.gameOver) {
+                this.spriteBatch.Draw(this.gameOverScreen, new Rectangle(0, 0, (int)screenSize.X, (int)this.screenSize.Y), Color.White);
+                this.spriteBatch.DrawString(this.font, "       Game Over!\nPress Space to play again.", new Vector2(35, 180), Color.White);
+            }
+
             this.spriteBatch.End();
 
             base.Draw(gameTime);
@@ -157,9 +187,22 @@ namespace Tetris {
 
         private void LockTetromino() {
             this.score += this.lockScore;
-            
+
+            this.lockedPieces++;
+            if (this.lockedPieces % this.lockedPiecesToIncreaseDifficulty == 0) {
+                this.lockedPieces = 0;
+
+                if (this.forceDownTick - this.difficultyIncreaseStep >= this.maxForceDownSpeed)
+                    this.forceDownTick -= this.difficultyIncreaseStep;
+            }
+
             this.field.LockTetromino(this.tetromino);
             this.field.HandleLineCompletion(this.tetromino.position);
+
+            if (!this.field.DoesTetrominoFit(this.nextTetromino.layout, 0, this.tetrominoPosition)) {
+                this.gameOver = true;
+                return;
+            }
 
             this.gameObjects.Remove(this.tetromino);
             this.tetromino = this.nextTetromino;
@@ -172,6 +215,29 @@ namespace Tetris {
 
             this.nextTetromino.Initialize();
             this.nextTetromino.LoadContent(this.Content);
+        }
+
+        private void ResetGame() {
+            this.gameOver = false;
+
+            this.gameObjects.Clear();
+            
+            this.score = 0;
+
+            this.field = new Field(this.fieldPosition);
+            this.tetromino = new Tetromino(this.tetrominoPosition);
+            this.nextTetromino = new Tetromino(this.nextTetrominoPosition);
+
+            this.gameObjects = new List<GameObject>() {
+                this.field,
+                this.tetromino,
+                this.nextTetromino
+            };
+
+            this.gameObjects.ForEach(delegate (GameObject gameObject) {
+                gameObject.Initialize(); 
+                gameObject.LoadContent(this.Content); 
+            });
         }
 
         private void Field_AddLinesCompletedScore(int lines) {
