@@ -8,6 +8,8 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Snake {
     public class Snake {
+        public static event Action OnBitBody;
+
         private Vector2 _headPosition;
         private Texture2D _texture;
 
@@ -17,8 +19,6 @@ namespace Snake {
             Up,
             Down
         };
-
-        private static Random _random = new Random();
 
         private Direction _direction;
         private float _timeUntilNextStep;
@@ -106,16 +106,14 @@ namespace Snake {
             }
 
             UpdateBodyBlockPosition(0, _headPosition);
+
+            if (IsPositionInBody(_headPosition))
+                OnBitBody?.Invoke();
         }
 
         public void Draw(SpriteBatch spriteBatch) {
             foreach (Vector2 bodyBlock in _body)
                 spriteBatch.Draw(_texture, bodyBlock, Color.White);
-        }
-
-        private Direction GetRandomDirection() {
-            Array values = Enum.GetValues(typeof(Direction));
-            return (Direction)values.GetValue(_random.Next(values.Length));
         }
 
         public bool IsPositionInBody(Vector2 position) {
@@ -124,6 +122,15 @@ namespace Snake {
                     return true;
 
             return false;
+        }
+
+        public void AddTail() {
+            _body.Add(_body[_body.Count - 1]);
+        }
+
+        private Direction GetRandomDirection() {
+            Array values = Enum.GetValues(typeof(Direction));
+            return (Direction)values.GetValue(new Random().Next(values.Length));
         }
 
         private void UpdateBodyBlockPosition(int index, Vector2 newPosition) {

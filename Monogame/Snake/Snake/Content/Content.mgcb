@@ -25,6 +25,13 @@
 /processorParam:TextureFormat=Color
 /build:Body Block/Body Block.png
 
+#begin Font/Manaspace Regular.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Font/Manaspace Regular.spritefont
+
 #begin Food/Food.png
 /importer:TextureImporter
 /processor:TextureProcessor

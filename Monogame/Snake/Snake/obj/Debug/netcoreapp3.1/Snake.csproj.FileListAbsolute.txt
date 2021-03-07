@@ -23,3 +23,4 @@ D:\StradivariK\Documents\Projects\playground\Monogame\Snake\Snake\obj\Debug\netc
 D:\StradivariK\Documents\Projects\playground\Monogame\Snake\Snake\obj\Debug\netcoreapp3.1\Snake.genruntimeconfig.cache
 D:\StradivariK\Documents\Projects\playground\Monogame\Snake\Snake\bin\Debug\netcoreapp3.1\Content\Body Block\Body Block.xnb
 D:\StradivariK\Documents\Projects\playground\Monogame\Snake\Snake\bin\Debug\netcoreapp3.1\Content\Food\Food.xnb
+D:\StradivariK\Documents\Projects\playground\Monogame\Snake\Snake\bin\Debug\netcoreapp3.1\Content\Font\Manaspace Regular.xnb
