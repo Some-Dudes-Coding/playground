@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "yUkLcDESrn9RT2T9d78UW+iXuIlpX+kpgKdwc+Bhw8dcuqTORO/BK97We+3C7I+k6bgpPyL0lK0GLuXoXSZM6g==",
+  "success": true,
+  "projectFilePath": "D:\\StradivariK\\Documents\\Projects\\playground\\Monogame\\Snake\\Snake\\Snake.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\StradivariK\\.nuget\\packages\\monogame.content.builder.task\\3.8.0.1641\\monogame.content.builder.task.3.8.0.1641.nupkg.sha512",
+    "C:\\Users\\StradivariK\\.nuget\\packages\\monogame.framework.desktopgl\\3.8.0.1641\\monogame.framework.desktopgl.3.8.0.1641.nupkg.sha512"
+  ],
+  "logs": []
+}

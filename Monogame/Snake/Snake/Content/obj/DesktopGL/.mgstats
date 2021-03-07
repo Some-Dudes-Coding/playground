@@ -1,0 +1,3 @@
+Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"D:/StradivariK/Documents/Projects/playground/Monogame/Snake/Snake/Content/Body Block/Body Block.png","D:/StradivariK/Documents/Projects/playground/Monogame/Snake/Snake/Content/bin/DesktopGL/Body Block/Body Block.xnb","TextureProcessor","Texture2DContent",119,1685,0.1234587
+"D:/StradivariK/Documents/Projects/playground/Monogame/Snake/Snake/Content/Food/Food.png","D:/StradivariK/Documents/Projects/playground/Monogame/Snake/Snake/Content/bin/DesktopGL/Food/Food.xnb","TextureProcessor","Texture2DContent",399,1685,0.0140276
