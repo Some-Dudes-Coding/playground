@@ -10,7 +10,7 @@ namespace Snake {
     public class Snake {
         public static event Action OnBitBody;
 
-        private Vector2 _headPosition;
+        public Vector2 HeadPosition { get; private set; }
         private Texture2D _texture;
 
         private enum Direction { 
@@ -27,7 +27,7 @@ namespace Snake {
         private List<Vector2> _body;
 
         public Snake(Vector2 position) {
-            _headPosition = position;
+            HeadPosition = position;
         }
 
         public void Initialize() {
@@ -36,13 +36,13 @@ namespace Snake {
             _timeUntilNextStep = 0.100f;
             _timeSincePreviousStep = 0;
 
-            _body = new List<Vector2>() { _headPosition };
+            _body = new List<Vector2>() { HeadPosition };
         }
 
         public void LoadContent(ContentManager contentManager) {
             _texture = contentManager.Load<Texture2D>("Body Block/Body Block");
 
-            Vector2 currentPosition = _headPosition;
+            Vector2 currentPosition = HeadPosition;
             for (int i = 0; i < 3; i++) {
                 switch (_direction) {
                     case Direction.Right:
@@ -89,25 +89,25 @@ namespace Snake {
 
             switch (_direction) {
                 case Direction.Right:
-                    _headPosition += new Vector2(_texture.Width, 0);
+                    HeadPosition += new Vector2(_texture.Width, 0);
                     break;
 
                 case Direction.Left:
-                    _headPosition -= new Vector2(_texture.Width, 0);
+                    HeadPosition -= new Vector2(_texture.Width, 0);
                     break;
 
                 case Direction.Up:
-                    _headPosition -= new Vector2(0, _texture.Height);
+                    HeadPosition -= new Vector2(0, _texture.Height);
                     break;
 
                 case Direction.Down:
-                    _headPosition += new Vector2(0, _texture.Height);
+                    HeadPosition += new Vector2(0, _texture.Height);
                     break;
             }
 
-            UpdateBodyBlockPosition(0, _headPosition);
+            UpdateBodyBlockPosition(0, HeadPosition);
 
-            if (IsPositionInBody(_headPosition))
+            if (IsBitingBody())
                 OnBitBody?.Invoke();
         }
 
@@ -119,6 +119,14 @@ namespace Snake {
         public bool IsPositionInBody(Vector2 position) {
             foreach (Vector2 bodyBlock in _body)
                 if (position.Equals(bodyBlock))
+                    return true;
+
+            return false;
+        }
+
+        private bool IsBitingBody() {
+            for (int i = 1; i < _body.Count; i++)
+                if (HeadPosition.Equals(_body[i]))
                     return true;
 
             return false;

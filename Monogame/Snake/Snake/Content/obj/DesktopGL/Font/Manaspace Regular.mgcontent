@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <SourceFile>D:/StradivariK/Documents/Projects/playground/Monogame/Snake/Snake/Content/Font/Manaspace Regular.spritefont</SourceFile>
-  <SourceTime>2021-02-21T18:01:52.2382661-06:00</SourceTime>
+  <SourceTime>2021-03-07T14:42:13.5615692-06:00</SourceTime>
   <DestFile>D:/StradivariK/Documents/Projects/playground/Monogame/Snake/Snake/Content/bin/DesktopGL/Font/Manaspace Regular.xnb</DestFile>
-  <DestTime>2021-03-07T14:40:04.6202069-06:00</DestTime>
+  <DestTime>2021-03-08T22:51:03.5128587-06:00</DestTime>
   <Importer>FontDescriptionImporter</Importer>
   <ImporterTime>2020-08-10T16:17:54-05:00</ImporterTime>
   <Processor>FontDescriptionProcessor</Processor>
