@@ -1,0 +1,72 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\StradivariK\\Documents\\Projects\\playground\\Monogame\\Breakout\\Breakout\\Breakout.csproj": {}
+  },
+  "projects": {
+    "D:\\StradivariK\\Documents\\Projects\\playground\\Monogame\\Breakout\\Breakout\\Breakout.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\StradivariK\\Documents\\Projects\\playground\\Monogame\\Breakout\\Breakout\\Breakout.csproj",
+        "projectName": "Breakout",
+        "projectPath": "D:\\StradivariK\\Documents\\Projects\\playground\\Monogame\\Breakout\\Breakout\\Breakout.csproj",
+        "packagesPath": "C:\\Users\\StradivariK\\.nuget\\packages\\",
+        "outputPath": "D:\\StradivariK\\Documents\\Projects\\playground\\Monogame\\Breakout\\Breakout\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\StradivariK\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "MonoGame.Content.Builder.Task": {
+              "target": "Package",
+              "version": "[3.8.0.1641, )"
+            },
+            "MonoGame.Framework.DesktopGL": {
+              "target": "Package",
+              "version": "[3.8.0.1641, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.200\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
