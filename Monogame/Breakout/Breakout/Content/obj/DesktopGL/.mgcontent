@@ -5,8 +5,10 @@
   <Config />
   <SourceFiles>
     <File>D:/StradivariK/Documents/Projects/playground/Monogame/Breakout/Breakout/Content/Field Boundary/Field Boundary.png</File>
+    <File>D:/StradivariK/Documents/Projects/playground/Monogame/Breakout/Breakout/Content/Paddle/Paddle.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
   </DestFiles>
 </SourceFileCollection>

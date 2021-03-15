@@ -1,0 +1,8 @@
+D:\StradivariK\Documents\Projects\Snake\.mono\temp\bin\Debug\Snake.dll
+D:\StradivariK\Documents\Projects\Snake\.mono\temp\bin\Debug\Snake.pdb
+D:\StradivariK\Documents\Projects\Snake\.mono\temp\obj\Debug\Snake.csprojAssemblyReference.cache
+D:\StradivariK\Documents\Projects\Snake\.mono\temp\obj\Debug\Snake.AssemblyInfoInputs.cache
+D:\StradivariK\Documents\Projects\Snake\.mono\temp\obj\Debug\Snake.AssemblyInfo.cs
+D:\StradivariK\Documents\Projects\Snake\.mono\temp\obj\Debug\Snake.csproj.CoreCompileInputs.cache
+D:\StradivariK\Documents\Projects\Snake\.mono\temp\obj\Debug\Snake.dll
+D:\StradivariK\Documents\Projects\Snake\.mono\temp\obj\Debug\Snake.pdb

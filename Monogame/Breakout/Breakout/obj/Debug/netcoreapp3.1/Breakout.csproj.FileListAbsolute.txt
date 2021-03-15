@@ -22,3 +22,7 @@ D:\StradivariK\Documents\Projects\playground\Monogame\Breakout\Breakout\obj\Debu
 D:\StradivariK\Documents\Projects\playground\Monogame\Breakout\Breakout\obj\Debug\netcoreapp3.1\Breakout.pdb
 D:\StradivariK\Documents\Projects\playground\Monogame\Breakout\Breakout\obj\Debug\netcoreapp3.1\Breakout.genruntimeconfig.cache
 D:\StradivariK\Documents\Projects\playground\Monogame\Breakout\Breakout\bin\Debug\netcoreapp3.1\Content\Field Boundary\Field Boundary.xnb
+D:\StradivariK\Documents\Projects\playground\Monogame\Breakout\Breakout\bin\Debug\netcoreapp3.1\MonoGame.Extended.dll
+D:\StradivariK\Documents\Projects\playground\Monogame\Breakout\Breakout\bin\Debug\netcoreapp3.1\MonoGame.Extended.Collisions.dll
+D:\StradivariK\Documents\Projects\playground\Monogame\Breakout\Breakout\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+D:\StradivariK\Documents\Projects\playground\Monogame\Breakout\Breakout\bin\Debug\netcoreapp3.1\Content\Paddle\Paddle.xnb

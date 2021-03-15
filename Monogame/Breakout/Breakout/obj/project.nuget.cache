@@ -1,11 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "nGNMraLFz/nIeGxV1YaIsr5KjyyvEjUnOLzOQ9gYwCrrWyZeqMcDIbKBUlBxvjE0PD9/Z0XSlQtKJVY87OkV5Q==",
+  "dgSpecHash": "mKOaiYKojTxhtEDjsq/4V77al7L5E6XGpQoc+EgIAlrsCMnsGlfZUruyffF1ghMxPS5f+3yZ1SLDKyYn0VwBrw==",
   "success": true,
   "projectFilePath": "D:\\StradivariK\\Documents\\Projects\\playground\\Monogame\\Breakout\\Breakout\\Breakout.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\StradivariK\\.nuget\\packages\\monogame.content.builder.task\\3.8.0.1641\\monogame.content.builder.task.3.8.0.1641.nupkg.sha512",
-    "C:\\Users\\StradivariK\\.nuget\\packages\\monogame.framework.desktopgl\\3.8.0.1641\\monogame.framework.desktopgl.3.8.0.1641.nupkg.sha512"
+    "C:\\Users\\StradivariK\\.nuget\\packages\\monogame.extended\\3.8.0\\monogame.extended.3.8.0.nupkg.sha512",
+    "C:\\Users\\StradivariK\\.nuget\\packages\\monogame.extended.collisions\\3.8.0\\monogame.extended.collisions.3.8.0.nupkg.sha512",
+    "C:\\Users\\StradivariK\\.nuget\\packages\\monogame.framework.desktopgl\\3.8.0.1641\\monogame.framework.desktopgl.3.8.0.1641.nupkg.sha512",
+    "C:\\Users\\StradivariK\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512"
   ],
   "logs": []
 }

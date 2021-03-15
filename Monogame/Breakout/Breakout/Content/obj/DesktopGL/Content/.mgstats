@@ -1,2 +1,3 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
 "D:/StradivariK/Documents/Projects/playground/Monogame/Breakout/Breakout/Content/Field Boundary/Field Boundary.png","D:/StradivariK/Documents/Projects/playground/Monogame/Breakout/Breakout/Content/bin/DesktopGL/Content/Field Boundary/Field Boundary.xnb","TextureProcessor","Texture2DContent",3532,2132885,0.1613796
+"D:/StradivariK/Documents/Projects/playground/Monogame/Breakout/Breakout/Content/Paddle/Paddle.png","D:/StradivariK/Documents/Projects/playground/Monogame/Breakout/Breakout/Content/bin/DesktopGL/Content/Paddle/Paddle.xnb","TextureProcessor","Texture2DContent",161,10085,0.1133045

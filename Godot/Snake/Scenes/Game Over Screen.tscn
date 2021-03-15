@@ -1,0 +1,34 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Assets/Manaspace Font/Manaspace.tres" type="DynamicFont" id=1]
+
+[node name="Game Over Screen" type="Control"]
+margin_right = 860.0
+margin_bottom = 500.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+modulate = Color( 0, 0, 0, 0.847059 )
+margin_right = 860.0
+margin_bottom = 500.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -335.0
+margin_top = 199.943
+margin_right = 1340.0
+margin_bottom = 420.943
+rect_scale = Vector2( 0.4, 0.4 )
+custom_fonts/font = ExtResource( 1 )
+text = "Game Over!
+Press Space to play again"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
