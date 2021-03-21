@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scenes/Paddle.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Boundary.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Ball.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scripts/GameManager.cs" type="Script" id=4]
+[ext_resource path="res://Scenes/Dead Zone.tscn" type="PackedScene" id=5]
+
+[node name="Game" type="Node2D"]
+script = ExtResource( 4 )
+_ballOffset = 2.0
+_blockPadding = 2.0
+
+[node name="Paddle" parent="." instance=ExtResource( 1 )]
+position = Vector2( 320, 335 )
+_speed = 340.0
+
+[node name="Ball" parent="." instance=ExtResource( 3 )]
+position = Vector2( 320, 324 )
+_defaultSpeed = Vector2( 300, 300 )
+
+[node name="Blocks" type="Node2D" parent="."]
+
+[node name="Boundaries" type="Node2D" parent="."]
+
+[node name="Right Boundary" parent="Boundaries" instance=ExtResource( 2 )]
+position = Vector2( 647, 180 )
+scale = Vector2( 0.5, 18 )
+
+[node name="Left Boundary" parent="Boundaries" instance=ExtResource( 2 )]
+position = Vector2( -5, 180 )
+scale = Vector2( 0.5, 18 )
+
+[node name="Top Boundary" parent="Boundaries" instance=ExtResource( 2 )]
+position = Vector2( 321, -5 )
+scale = Vector2( 33.1, 0.5 )
+
+[node name="Dead Zone" parent="." instance=ExtResource( 5 )]
+position = Vector2( 321, 365 )
+scale = Vector2( 66.2, 1 )
+[connection signal="body_entered" from="Dead Zone" to="." method="DeadZone_OnBallEnter"]

@@ -1,0 +1,8 @@
+D:\StradivariK\Documents\Projects\playground\Godot\Breakout\.mono\temp\bin\Debug\Breakout.dll
+D:\StradivariK\Documents\Projects\playground\Godot\Breakout\.mono\temp\bin\Debug\Breakout.pdb
+D:\StradivariK\Documents\Projects\playground\Godot\Breakout\.mono\temp\obj\Debug\Breakout.csprojAssemblyReference.cache
+D:\StradivariK\Documents\Projects\playground\Godot\Breakout\.mono\temp\obj\Debug\Breakout.AssemblyInfoInputs.cache
+D:\StradivariK\Documents\Projects\playground\Godot\Breakout\.mono\temp\obj\Debug\Breakout.AssemblyInfo.cs
+D:\StradivariK\Documents\Projects\playground\Godot\Breakout\.mono\temp\obj\Debug\Breakout.csproj.CoreCompileInputs.cache
+D:\StradivariK\Documents\Projects\playground\Godot\Breakout\.mono\temp\obj\Debug\Breakout.dll
+D:\StradivariK\Documents\Projects\playground\Godot\Breakout\.mono\temp\obj\Debug\Breakout.pdb

@@ -11,6 +11,7 @@ namespace Snake {
         public static event Action OnBitBody;
 
         public Vector2 HeadPosition { get; private set; }
+
         private Texture2D _texture;
 
         private enum Direction { 

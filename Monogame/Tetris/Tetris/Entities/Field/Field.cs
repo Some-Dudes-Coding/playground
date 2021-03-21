@@ -108,7 +108,7 @@ namespace Tetris {
 
             Thread.Sleep(this.lineBlockAnimationDelay * 3);
 
-            lines.ForEach((line) => {
+            lines.ForEach(delegate (int line) {
                 for (int i = 1; i < this.sizeX - 1; i++)
                     for (int j = line; j > 0; j--)
                         this.layout[Utils.GetRotatedIndex(0, this.sizeX, i, j)] = this.layout[Utils.GetRotatedIndex(0, this.sizeX, i, j - 1)];
